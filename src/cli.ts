@@ -4,14 +4,18 @@ import { exportSvg } from './export/exportSvg.js';
 import { exportTxt } from './export/exportTxt.js';
 import { readClipboard } from './clipboard/clipboard.js';
 import {
+  bitcoinPayload,
+  calendarEventPayload,
   emailPayload,
   geoPayload,
+  mecardPayload,
   phonePayload,
   rawPayload,
   smsPayload,
   textPayload,
   urlPayload,
   vcardPayload,
+  whatsappPayload,
   wifiPayload,
   type WifiEncryption,
 } from './qr/payloads.js';
@@ -200,6 +204,72 @@ export function createCli(): Command {
         }
       >(optionValues, command);
       return writePayload(vcardPayload(options), options);
+    });
+
+  addGlobalOptions(program.command('mecard'))
+    .description('Generate a compact MeCard contact QR code')
+    .requiredOption('--name <name>', 'contact name')
+    .option('--phone <phone>', 'contact phone')
+    .option('--email <email>', 'contact email')
+    .option('--address <address>', 'contact address')
+    .option('--url <url>', 'URL')
+    .option('--note <note>', 'note')
+    .action((optionValues: GlobalOptions, command: Command) => {
+      const options = opts<
+        GlobalOptions & {
+          name: string;
+          phone?: string;
+          email?: string;
+          address?: string;
+          url?: string;
+          note?: string;
+        }
+      >(optionValues, command);
+      return writePayload(mecardPayload(options), options);
+    });
+
+  addGlobalOptions(program.command('event'))
+    .description('Generate an iCalendar event QR code')
+    .requiredOption('--summary <summary>', 'event summary')
+    .requiredOption('--start <start>', 'event start as ISO date or iCalendar date')
+    .option('--end <end>', 'event end as ISO date or iCalendar date')
+    .option('--location <location>', 'event location')
+    .option('--description <description>', 'event description')
+    .action((optionValues: GlobalOptions, command: Command) => {
+      const options = opts<
+        GlobalOptions & {
+          summary: string;
+          start: string;
+          end?: string;
+          location?: string;
+          description?: string;
+        }
+      >(optionValues, command);
+      return writePayload(calendarEventPayload(options), options);
+    });
+
+  addGlobalOptions(program.command('whatsapp <phone>'))
+    .description('Generate a WhatsApp chat QR code')
+    .option('--message <message>', 'prefilled message')
+    .action((phone: string, optionValues: GlobalOptions, command: Command) => {
+      const options = opts<GlobalOptions & { message?: string }>(optionValues, command);
+      return writePayload(whatsappPayload(phone, options.message), options);
+    });
+
+  addGlobalOptions(program.command('bitcoin <address>'))
+    .description('Generate a Bitcoin payment QR code')
+    .option('--amount <amount>', 'BTC amount')
+    .option('--label <label>', 'payment label')
+    .option('--message <message>', 'payment message')
+    .action((address: string, optionValues: GlobalOptions, command: Command) => {
+      const options = opts<
+        GlobalOptions & {
+          amount?: string;
+          label?: string;
+          message?: string;
+        }
+      >(optionValues, command);
+      return writePayload(bitcoinPayload({ address, ...options }), options);
     });
 
   addGlobalOptions(program.command('geo'))

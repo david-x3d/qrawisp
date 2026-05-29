@@ -14,7 +14,7 @@ Qrawisp is a polished, privacy-first terminal GUI for generating practical QR co
 ## ⚡ Features
 
 - Real TUI-first QR workflow with sidebar navigation, forms, preview, actions, status bar, help, and settings.
-- Generate QR payloads for WiFi, clipboard, URLs, text, email, phone, SMS, vCards, geo links, and raw payloads.
+- Generate QR payloads for WiFi, clipboard, URLs, text, email, phone, SMS, vCards, MeCards, calendar events, WhatsApp, Bitcoin, geo links, and raw payloads.
 - Export PNG, SVG, and terminal TXT QR codes with quiet-zone support for reliable scanning.
 - Cross-platform WiFi detection helpers for Linux, Windows, and macOS.
 - Privacy-minded defaults: masked WiFi passwords, no password history, no secret logging, and clipboard sensitivity warnings.
@@ -50,6 +50,10 @@ qrawisp email user@example.com --subject "Hello" --body "Test"
 qrawisp phone +49123456789
 qrawisp sms +49123456789 --message "Hello"
 qrawisp vcard --name "David" --phone "+49123456789" --email "test@example.com"
+qrawisp mecard --name "David" --phone "+49123456789" --email "test@example.com"
+qrawisp event --summary "Demo" --start "2026-06-01T10:00:00Z" --end "2026-06-01T10:30:00Z"
+qrawisp whatsapp +49123456789 --message "Hello"
+qrawisp bitcoin bc1qw508d6qejxtdg4y5r3zarvary0c5xw7kygt080 --amount 0.01 --label "Qrawisp"
 qrawisp geo --lat 50.9375 --lng 6.9603
 qrawisp raw "CUSTOM:PAYLOAD"
 ```
@@ -84,7 +88,7 @@ Clipboard content is checked for common secret patterns before a QR code is gene
 
 ![TUI screenshot placeholder](docs/tui-screenshot-placeholder.svg)
 
-The TUI includes screens for Current WiFi, Manual WiFi, Clipboard, URL, Text, Email, Phone, SMS, vCard, Geo Location, Raw Payload, Export Manager, Settings, and Help.
+The TUI includes screens for Current WiFi, Manual WiFi, Clipboard, URL, Text, Email, Phone, SMS, vCard, MeCard, Calendar Event, WhatsApp, Bitcoin, Geo Location, Raw Payload, Export Manager, Settings, and Help.
 
 Keyboard basics: `↑/↓` navigate, `Enter` select/focus, `Tab` switch fields, `E` export, `?` help, `Q` quit.
 

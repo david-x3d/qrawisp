@@ -101,6 +101,118 @@ export function vcardPayload(input: VCardInput): string {
   return lines.join('\n');
 }
 
+export interface MeCardInput {
+  name: string;
+  phone?: string;
+  email?: string;
+  address?: string;
+  url?: string;
+  note?: string;
+}
+
+function mecardEscape(value: string): string {
+  return normalizeLineEndings(value)
+    .replace(/\\/g, '\\\\')
+    .replace(/;/g, '\\;')
+    .replace(/:/g, '\\:')
+    .replace(/\n/g, '\\n');
+}
+
+export function mecardPayload(input: MeCardInput): string {
+  if (!input.name.trim()) {
+    throw new Error('Contact name is required.');
+  }
+  const parts = [`N:${mecardEscape(input.name)}`];
+  if (input.phone) parts.push(`TEL:${phonePayload(input.phone).replace(/^tel:/, '')}`);
+  if (input.email) parts.push(`EMAIL:${mecardEscape(input.email)}`);
+  if (input.address) parts.push(`ADR:${mecardEscape(input.address)}`);
+  if (input.url) parts.push(`URL:${normalizeUrl(input.url)}`);
+  if (input.note) parts.push(`NOTE:${mecardEscape(input.note)}`);
+  return `MECARD:${parts.join(';')};;`;
+}
+
+export interface CalendarEventInput {
+  summary: string;
+  start: string;
+  end?: string;
+  location?: string;
+  description?: string;
+  uid?: string;
+  dtstamp?: string;
+}
+
+function icsEscape(value: string): string {
+  return normalizeLineEndings(value)
+    .replace(/\\/g, '\\\\')
+    .replace(/;/g, '\\;')
+    .replace(/,/g, '\\,')
+    .replace(/\n/g, '\\n');
+}
+
+function toIcsDate(value: string): string {
+  const trimmed = value.trim();
+  if (/^\d{8}(T\d{6}Z?)?$/.test(trimmed)) return trimmed;
+  const date = new Date(trimmed);
+  if (Number.isNaN(date.getTime())) {
+    throw new Error('Calendar dates must be valid ISO dates or iCalendar date values.');
+  }
+  return date
+    .toISOString()
+    .replace(/[-:]/g, '')
+    .replace(/\.\d{3}Z$/, 'Z');
+}
+
+export function calendarEventPayload(input: CalendarEventInput): string {
+  if (!input.summary.trim()) throw new Error('Event summary is required.');
+  if (!input.start.trim()) throw new Error('Event start is required.');
+  const dtstamp = toIcsDate(input.dtstamp ?? new Date().toISOString());
+  const uid =
+    input.uid ??
+    `qrawisp-${Buffer.from(`${input.summary}:${input.start}`).toString('base64url')}@qrawisp`;
+  const lines = [
+    'BEGIN:VCALENDAR',
+    'VERSION:2.0',
+    'PRODID:-//Qrawisp//QR Event//EN',
+    'BEGIN:VEVENT',
+    `UID:${uid}`,
+    `DTSTAMP:${dtstamp}`,
+    `DTSTART:${toIcsDate(input.start)}`,
+  ];
+  if (input.end) lines.push(`DTEND:${toIcsDate(input.end)}`);
+  lines.push(`SUMMARY:${icsEscape(input.summary)}`);
+  if (input.location) lines.push(`LOCATION:${icsEscape(input.location)}`);
+  if (input.description) lines.push(`DESCRIPTION:${icsEscape(input.description)}`);
+  lines.push('END:VEVENT', 'END:VCALENDAR');
+  return lines.join('\n');
+}
+
+export function whatsappPayload(phone: string, message?: string): string {
+  const normalized = phone.replace(/[^\d]/g, '');
+  if (!/^\d{6,20}$/.test(normalized)) {
+    throw new Error('A valid WhatsApp phone number with country code is required.');
+  }
+  return `https://wa.me/${normalized}${message ? `?text=${encodeURIComponent(message)}` : ''}`;
+}
+
+export interface BitcoinInput {
+  address: string;
+  amount?: string;
+  label?: string;
+  message?: string;
+}
+
+export function bitcoinPayload(input: BitcoinInput): string {
+  if (!/^(bc1|[13])[a-zA-HJ-NP-Z0-9]{25,90}$/i.test(input.address.trim())) {
+    throw new Error('A valid Bitcoin address is required.');
+  }
+  const params = new URLSearchParams();
+  if (input.amount) params.set('amount', input.amount);
+  if (input.label) params.set('label', input.label);
+  if (input.message) params.set('message', input.message);
+  const query = params.toString();
+  return `bitcoin:${input.address.trim()}${query ? `?${query}` : ''}`;
+}
+
 export function geoPayload(lat: number, lng: number): string {
   if (!Number.isFinite(lat) || lat < -90 || lat > 90) {
     throw new Error('Latitude must be between -90 and 90.');
