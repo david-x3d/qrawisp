@@ -22,7 +22,7 @@ describe('QR payloads', () => {
   });
 
   it('normalizes URLs without a scheme', () => {
-    expect(normalizeUrl('d4vid.io')).toBe('https://d4vid.io/');
+    expect(normalizeUrl('example.com')).toBe('https://example.com/');
     expect(urlPayload('https://example.com/a')).toBe('https://example.com/a');
   });
 
@@ -59,9 +59,9 @@ describe('QR payloads', () => {
         name: 'David',
         phone: '+49123456789',
         email: 'test@example.com',
-        url: 'd4vid.io',
+        url: 'example.com',
       }),
-    ).toBe('MECARD:N:David;TEL:+49123456789;EMAIL:test@example.com;URL:https://d4vid.io/;;');
+    ).toBe('MECARD:N:David;TEL:+49123456789;EMAIL:test@example.com;URL:https://example.com/;;');
   });
 
   it('generates calendar event payloads', () => {

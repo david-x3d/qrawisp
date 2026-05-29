@@ -43,7 +43,7 @@ qrawisp
 Use secondary CLI shortcuts:
 
 ```bash
-qrawisp url d4vid.io
+qrawisp url example.com
 qrawisp text "hello world"
 qrawisp clip
 qrawisp email user@example.com --subject "Hello" --body "Test"
@@ -62,7 +62,7 @@ Export from the CLI:
 
 ```bash
 qrawisp wifi --ssid "MyWiFi" --password "secret" --type WPA --format png --output wifi.png
-qrawisp url https://d4vid.io --format svg --output site.svg
+qrawisp url https://example.com --format svg --output site.svg
 qrawisp text "scan me" --format txt --output qr.txt
 ```
 
