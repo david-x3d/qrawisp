@@ -4,7 +4,7 @@
   "description": "Fast QR codes from your terminal.",
   "type": "module",
   "bin": {
-    "qrawisp": "./dist/index.js"
+    "qrawisp": "dist/index.js"
   },
   "files": [
     "dist",
