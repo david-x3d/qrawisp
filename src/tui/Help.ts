@@ -1,0 +1,16 @@
+export const helpText = [
+  'Qrawisp - Fast QR codes from your terminal.',
+  '',
+  'Keys',
+  '  Up/Down       Navigate menu',
+  '  Enter         Select menu item or focus field',
+  '  Tab           Move between fields',
+  '  E             Export current QR as PNG',
+  '  ?             Open Help',
+  '  Q/Esc/C-c     Quit',
+  '',
+  'Security',
+  '  WiFi passwords stay masked by default.',
+  '  Clipboard content is checked for common secret patterns.',
+  '  Qrawisp does not keep WiFi history.',
+].join('\n');

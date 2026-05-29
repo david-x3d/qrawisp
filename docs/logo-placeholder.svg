@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="240" viewBox="0 0 960 240" role="img" aria-labelledby="title desc">
+  <title id="title">Qrawisp logo placeholder</title>
+  <desc id="desc">A compact terminal-inspired Qrawisp logo placeholder.</desc>
+  <rect width="960" height="240" rx="24" fill="#0a0f14"/>
+  <rect x="28" y="28" width="904" height="184" rx="14" fill="#101820" stroke="#18c9d2" stroke-width="3"/>
+  <text x="72" y="132" fill="#f8fafc" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="72" font-weight="700">Qrawisp</text>
+  <text x="78" y="172" fill="#18c9d2" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="24">Fast QR codes from your terminal.</text>
+  <g transform="translate(710 58)" fill="#f8fafc">
+    <path d="M0 0h36v36H0zM48 0h12v12H48zM72 0h36v36H72zM0 48h12v12H0zM24 48h24v12H24zM60 48h12v12H60zM96 48h12v12H96zM0 72h36v36H0zM48 72h12v12H48zM72 72h36v36H72zM48 96h12v12H48z"/>
+  </g>
+</svg>

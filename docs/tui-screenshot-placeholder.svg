@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="620" viewBox="0 0 1080 620" role="img" aria-labelledby="title desc">
+  <title id="title">Qrawisp TUI screenshot placeholder</title>
+  <desc id="desc">A placeholder showing the intended Qrawisp terminal GUI layout.</desc>
+  <rect width="1080" height="620" fill="#05070a"/>
+  <rect x="36" y="36" width="1008" height="548" rx="12" fill="#0d141b" stroke="#18c9d2" stroke-width="2"/>
+  <text x="64" y="80" fill="#18c9d2" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="28" font-weight="700">Qrawisp</text>
+  <text x="196" y="80" fill="#f8fafc" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="20">[ WiFi ] [ Clipboard ] [ URL ] [ Text ] [ Contact ]</text>
+  <line x1="36" y1="108" x2="1044" y2="108" stroke="#18c9d2" stroke-width="2"/>
+  <line x1="280" y1="108" x2="280" y2="536" stroke="#18c9d2" stroke-width="2"/>
+  <text x="64" y="150" fill="#f8fafc" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="20">Menu</text>
+  <text x="64" y="198" fill="#18c9d2" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="20">&gt; Current WiFi</text>
+  <text x="84" y="234" fill="#dbe4ea" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="20">Manual WiFi</text>
+  <text x="84" y="270" fill="#dbe4ea" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="20">Clipboard</text>
+  <text x="84" y="306" fill="#dbe4ea" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="20">URL</text>
+  <text x="84" y="342" fill="#dbe4ea" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="20">Text</text>
+  <text x="320" y="150" fill="#f8fafc" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="20">QR Preview</text>
+  <g transform="translate(460 180)" fill="#f8fafc">
+    <path d="M0 0h42v42H0zM56 0h14v14H56zM84 0h42v42H84zM0 56h14v14H0zM28 56h42v14H28zM98 56h28v14H98zM0 84h42v42H0zM56 84h14v14H56zM84 84h42v42H84zM56 112h14v14H56z"/>
+  </g>
+  <text x="320" y="376" fill="#dbe4ea" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="18">Payload: WIFI:T:WPA;S:...;P:********;H:false;;</text>
+  <rect x="320" y="420" width="148" height="42" rx="6" fill="#18c9d2"/>
+  <text x="342" y="447" fill="#061014" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="16" font-weight="700">Export PNG</text>
+  <rect x="488" y="420" width="148" height="42" rx="6" fill="#1e3a5f"/>
+  <text x="510" y="447" fill="#f8fafc" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="16" font-weight="700">Export SVG</text>
+  <line x1="36" y1="536" x2="1044" y2="536" stroke="#18c9d2" stroke-width="2"/>
+  <text x="64" y="570" fill="#f8fafc" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="18">↑↓ Navigate  Enter Select  E Export  Q Quit  ? Help</text>
+</svg>
