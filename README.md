@@ -2,8 +2,6 @@
 
 > Fast QR codes from your terminal.
 
-![Qrawisp logo placeholder](docs/logo-placeholder.svg)
-
 [![CI](https://github.com/david-x3d/qrawisp/actions/workflows/ci.yml/badge.svg)](https://github.com/david-x3d/qrawisp/actions/workflows/ci.yml)
 ![Node](https://img.shields.io/badge/node-%3E%3D20-339933)
 ![TypeScript](https://img.shields.io/badge/TypeScript-ready-3178c6)
@@ -85,8 +83,6 @@ qrawisp clip
 Clipboard content is checked for common secret patterns before a QR code is generated. Very long clipboard content requires confirmation in the TUI.
 
 ## 🖥 Terminal GUI
-
-![TUI screenshot placeholder](docs/tui-screenshot-placeholder.svg)
 
 The TUI includes screens for Current WiFi, Manual WiFi, Clipboard, URL, Text, Email, Phone, SMS, vCard, MeCard, Calendar Event, WhatsApp, Bitcoin, Geo Location, Raw Payload, Export Manager, Settings, and Help.
 
